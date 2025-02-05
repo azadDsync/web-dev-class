@@ -1,0 +1,49 @@
+*{
+    display: flex;
+    justify-content: center;
+
+}
+.cal{
+    height: 30rem;
+    width:20rem;
+    background-color: rgb(143, 138, 138);
+    display: block;
+    margin: 1rem;
+}
+.input{
+    height: 3rem;
+    width:100%;
+}
+.button-class{
+    background: #bab9b9;
+    height: 26rem;
+    /* margin: 0.5rem; */
+}
+.button-num{
+    height: 26rem;
+    width: 15rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+.div{
+    height: 2rem;
+    width: 2rem;
+    background-color: aliceblue;
+    padding: 0.5rem;
+    margin: 1rem;
+    border-radius: 0.8rem;
+}
+.button-operator{
+    height: 26rem;
+    width: 5rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+.div2{
+    height: 2rem;
+    width: 2rem;
+    background-color: aliceblue;
+    padding: 0.5rem;
+    margin: 1rem;
+    border-radius: 0.5rem;
+}
