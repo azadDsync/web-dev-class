@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .sudoku-container {
+            display: grid;
+            grid-template-columns: repeat(9, 40px);
+            grid-template-rows: repeat(9, 40px);
+            gap: 1px;
+            margin: 20px auto;
+            width: fit-content;
+            background: black;
+        }
+        .cell {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            font-size: 20px;
+            border: none;
+            outline: none;
+        }
+        .cell:nth-child(3n) {
+            border-right: 2px solid black;
+        }
+        .cell:nth-child(n+19):nth-child(-n+27),
+        .cell:nth-child(n+46):nth-child(-n+54) {
+            border-bottom: 2px solid black;
+        }
+        .cell[readonly] {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sudoku Game</h1>
+    <div class="sudoku-container" id="sudoku-board"></div>
+    <button onclick="checkSudoku()">Check Solution</button>
+    <script>
+        const sudokuBoard = [
+            [5, 3, '', '', 7, '', '', '', ''],
+            [6, '', '', 1, 9, 5, '', '', ''],
+            ['', 9, 8, '', '', '', '', 6, ''],
+            [8, '', '', '', 6, '', '', '', 3],
+            [4, '', '', 8, '', 3, '', '', 1],
+            [7, '', '', '', 2, '', '', '', 6],
+            ['', 6, '', '', '', '', 2, 8, ''],
+            ['', '', '', 4, 1, 9, '', '', 5],
+            ['', '', '', '', 8, '', '', 7, 9]
+        ];
+
+        function createBoard() {
+            const board = document.getElementById('sudoku-board');
+            sudokuBoard.forEach((row, rIndex) => {
+                row.forEach((num, cIndex) => {
+                    const cell = document.createElement('input');
+                    cell.type = 'text';
+                    cell.classList.add('cell');
+                    if (num !== '') {
+                        cell.value = num;
+                        cell.setAttribute('readonly', true);
+                    }
+                    cell.dataset.row = rIndex;
+                    cell.dataset.col = cIndex;
+                    cell.addEventListener('input', validateInput);
+                    board.appendChild(cell);
+                });
+            });
+        }
+
+        function validateInput(event) {
+            const value = event.target.value;
+            if (!/^[1-9]?$/.test(value)) {
+                event.target.value = '';
+            }
+        }
+
+        function checkSudoku() {
+            const inputs = document.querySelectorAll('.cell');
+            let valid = true;
+            inputs.forEach(input => {
+                if (!input.readOnly && (input.value === '' || isNaN(input.value))) {
+                    valid = false;
+                }
+            });
+            alert(valid ? "Sudoku is correctly filled!" : "Sudoku is not complete or has errors!");
+        }
+
+        createBoard();
+    </script>
+</body>
+</html>

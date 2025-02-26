@@ -6,6 +6,7 @@ let msg=document.querySelector("#msg");
 let turnO=true;
 let count=0;
 
+//select all the div and each div can be located or accessed through node 
 
 let winPattern=[
     [0,1,2],
@@ -83,12 +84,11 @@ const showWinner=(winner)=>{
 // ];
 const checkWinner=()=>{
     for(let pattern of winPattern){
-        console.log(pattern[0].innerText);
         
         let pval1= boxs[pattern[0]].innerText;
         let pval2= boxs[pattern[1]].innerText;
         let pval3= boxs[pattern[2]].innerText;
-        console.log(pval1);
+        // console.log(boxs[0]);
         
         if(pval1 !="" && pval2 != "" && pval3 !=""){
             if(pval1===pval2 && pval2 ===pval3){
